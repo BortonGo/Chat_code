@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include "User.h"    
+#include "Message.h" 
 
 
 using namespace std;
