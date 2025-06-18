@@ -1,22 +1,19 @@
 #pragma once
+
 #include <string>
-
-
-using namespace std;
 
 class User {
 private:
-    string login;
-    string password;
-    string name;
+    std::string login;
+    std::string password;
+    std::string name;
 
 public:
-    User(const string& l, const string& p, const string& n);
+    User(const std::string& l, const std::string& p, const std::string& n);
 
-    const string& getLogin() const;
-    const string& getPassword() const;
-    const string& getName() const;
+    const std::string& getLogin() const;
+    const std::string& getPassword() const;
+    const std::string& getName() const;
 
-    bool checkPassword(const string& p) const;
-        
+    bool checkPassword(const std::string& p) const;
 };

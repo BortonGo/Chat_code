@@ -1,18 +1,17 @@
 #pragma once
-#include <string>
 
-using namespace std;
+#include <string>
 
 class Message {
 private:
-    string from;
-    string to;
-    string text;
+    std::string from;
+    std::string to;
+    std::string text;
 
 public:
-    Message(const string& f, const string& t, const string& txt);
+    Message(const std::string& f, const std::string& t, const std::string& txt);
 
-    const string& getFrom() const;
-    const string& getTo() const;
-    const string& getText() const;
+    const std::string& getFrom() const;
+    const std::string& getTo() const;
+    const std::string& getText() const;
 };

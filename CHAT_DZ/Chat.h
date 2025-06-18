@@ -1,33 +1,27 @@
 #pragma once
-#include <iostream>
+
 #include <vector>
-#include <string>
-#include <algorithm>
-#include "User.h"    
-#include "Message.h" 
-
-
-using namespace std;
-class User;  
-class Message;
+#include <unordered_map>
+#include "User.h"
+#include "Message.h"
 
 class Chat {
 private:
-    vector<User> users;
-    vector<Message> messages;
+    std::unordered_map<std::string, User> users;
+    std::vector<Message> messages;
     User* currentUser = nullptr;
 
-    User* findUserByLogin(const string& login);
+    User* findUserByLogin(const std::string& login) const; 
+    void showMenu() const;
 
 public:
-    ~Chat();
+    ~Chat() = default;
 
     void registerUser();
     void login();
     void logout();
     void sendPrivateMessage();
     void sendBroadcastMessage();
-    void showMessages();
-    void showMenu();
+    void showMessages() const;
     void run();
 };
