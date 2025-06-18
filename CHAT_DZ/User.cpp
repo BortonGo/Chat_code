@@ -1,4 +1,4 @@
-#include "User.h"
+﻿#include "User.h"
 
 User::User(const std::string& l, const std::string& p, const std::string& n)
     : login(l), password(p), name(n) {

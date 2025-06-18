@@ -1,4 +1,4 @@
-#include "Message.h"
+﻿#include "Message.h"
 
 Message::Message(const std::string& f, const std::string& t, const std::string& txt)
     : from(f), to(t), text(txt) {

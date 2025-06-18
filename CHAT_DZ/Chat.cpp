@@ -1,4 +1,4 @@
-#include "Chat.h"
+ï»¿#include "Chat.h"
 #include <iostream>
 #include <algorithm>
 
@@ -11,124 +11,124 @@ User* Chat::findUserByLogin(const std::string& login) const {
 
 void Chat::registerUser() {
     string login, password, name;
-    cout << "Ðåãèñòðàöèÿ íîâîãî ïîëüçîâàòåëÿ\n";
-    cout << "Ëîãèí: ";
+    cout << "Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ Ð½Ð¾Ð²Ð¾Ð³Ð¾ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ\n";
+    cout << "Ð›Ð¾Ð³Ð¸Ð½: ";
     cin >> login;
 
     if (findUserByLogin(login)) {
-        cout << "Ïîëüçîâàòåëü ñ òàêèì ëîãèíîì óæå ñóùåñòâóåò!\n";
+        cout << "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ñ Ñ‚Ð°ÐºÐ¸Ð¼ Ð»Ð¾Ð³Ð¸Ð½Ð¾Ð¼ ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚!\n";
         return;
     }
 
-    cout << "Ïàðîëü: ";
+    cout << "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ: ";
     cin >> password;
-    cout << "Èìÿ: ";
+    cout << "Ð˜Ð¼Ñ: ";
     cin.ignore();
     getline(cin, name);
 
     users.emplace(login, User(login, password, name));
-    cout << "Ïîëüçîâàòåëü óñïåøíî çàðåãèñòðèðîâàí!\n";
+    cout << "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð·Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€Ð¾Ð²Ð°Ð½!\n";
 }
 
 void Chat::login() {
     if (currentUser) {
-        cout << "Âû óæå âîøëè êàê: " << currentUser->getName() << endl;
+        cout << "Ð’Ñ‹ ÑƒÐ¶Ðµ Ð²Ð¾ÑˆÐ»Ð¸ ÐºÐ°Ðº: " << currentUser->getName() << endl;
         return;
     }
 
     string login, password;
-    cout << "Âõîä â ÷àò\n";
-    cout << "Ëîãèí: ";
+    cout << "Ð’Ñ…Ð¾Ð´ Ð² Ñ‡Ð°Ñ‚\n";
+    cout << "Ð›Ð¾Ð³Ð¸Ð½: ";
     cin >> login;
-    cout << "Ïàðîëü: ";
+    cout << "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ: ";
     cin >> password;
 
     User* user = findUserByLogin(login);
     if (user && user->checkPassword(password)) {
         currentUser = user;
-        cout << "Äîáðî ïîæàëîâàòü, " << user->getName() << "!\n";
+        cout << "Ð”Ð¾Ð±Ñ€Ð¾ Ð¿Ð¾Ð¶Ð°Ð»Ð¾Ð²Ð°Ñ‚ÑŒ, " << user->getName() << "!\n";
     }
     else {
-        cout << "Íåâåðíûé ëîãèí èëè ïàðîëü!\n";
+        cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð»Ð¾Ð³Ð¸Ð½ Ð¸Ð»Ð¸ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ!\n";
     }
 }
 
 void Chat::logout() {
     if (currentUser) {
-        cout << "Äî ñâèäàíèÿ, " << currentUser->getName() << "!\n";
+        cout << "Ð”Ð¾ ÑÐ²Ð¸Ð´Ð°Ð½Ð¸Ñ, " << currentUser->getName() << "!\n";
         currentUser = nullptr;
     }
     else {
-        cout << "Âû íå âîøëè â ñèñòåìó!\n";
+        cout << "Ð’Ñ‹ Ð½Ðµ Ð²Ð¾ÑˆÐ»Ð¸ Ð² ÑÐ¸ÑÑ‚ÐµÐ¼Ñƒ!\n";
     }
 }
 
 void Chat::sendPrivateMessage() {
     if (!currentUser) {
-        cout << "Âû íå âîøëè â ñèñòåìó!\n";
+        cout << "Ð’Ñ‹ Ð½Ðµ Ð²Ð¾ÑˆÐ»Ð¸ Ð² ÑÐ¸ÑÑ‚ÐµÐ¼Ñƒ!\n";
         return;
     }
 
     string toLogin;
-    cout << "Êîìó îòïðàâèòü ñîîáùåíèå (ëîãèí): ";
+    cout << "ÐšÐ¾Ð¼Ñƒ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ (Ð»Ð¾Ð³Ð¸Ð½): ";
     cin >> toLogin;
 
     if (toLogin == currentUser->getLogin()) {
-        cout << "Íåëüçÿ îòïðàâèòü ñîîáùåíèå ñàìîìó ñåáå!\n";
+        cout << "ÐÐµÐ»ÑŒÐ·Ñ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ ÑÐ°Ð¼Ð¾Ð¼Ñƒ ÑÐµÐ±Ðµ!\n";
         return;
     }
 
     User* toUser = findUserByLogin(toLogin);
     if (!toUser) {
-        cout << "Ïîëüçîâàòåëü ñ òàêèì ëîãèíîì íå íàéäåí!\n";
+        cout << "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ñ Ñ‚Ð°ÐºÐ¸Ð¼ Ð»Ð¾Ð³Ð¸Ð½Ð¾Ð¼ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½!\n";
         return;
     }
 
-    cout << "Ñîîáùåíèå äëÿ " << toUser->getName() << ": ";
+    cout << "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð´Ð»Ñ " << toUser->getName() << ": ";
     string text;
     cin.ignore();
     getline(cin, text);
 
     messages.emplace_back(currentUser->getLogin(), toLogin, text);
-    cout << "Ñîîáùåíèå îòïðàâëåíî!\n";
+    cout << "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¾!\n";
 }
 
 void Chat::sendBroadcastMessage() {
     if (!currentUser) {
-        cout << "Âû íå âîøëè â ñèñòåìó!\n";
+        cout << "Ð’Ñ‹ Ð½Ðµ Ð²Ð¾ÑˆÐ»Ð¸ Ð² ÑÐ¸ÑÑ‚ÐµÐ¼Ñƒ!\n";
         return;
     }
 
-    cout << "Ñîîáùåíèå äëÿ âñåõ: ";
+    cout << "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð´Ð»Ñ Ð²ÑÐµÑ…: ";
     string text;
     cin.ignore();
     getline(cin, text);
 
     messages.emplace_back(currentUser->getLogin(), "all", text);
-    cout << "Ñîîáùåíèå îòïðàâëåíî âñåì ïîëüçîâàòåëÿì!\n";
+    cout << "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¾ Ð²ÑÐµÐ¼ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑÐ¼!\n";
 }
 
 void Chat::showMessages() const {
     if (!currentUser) {
-        cout << "Âû íå âîøëè â ñèñòåìó!\n";
+        cout << "Ð’Ñ‹ Ð½Ðµ Ð²Ð¾ÑˆÐ»Ð¸ Ð² ÑÐ¸ÑÑ‚ÐµÐ¼Ñƒ!\n";
         return;
     }
 
-    cout << "--- Âàøè ñîîáùåíèÿ ---\n";
+    cout << "--- Ð’Ð°ÑˆÐ¸ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ ---\n";
     for (const auto& msg : messages) {
         if (msg.getTo() == currentUser->getLogin() ||
             msg.getFrom() == currentUser->getLogin() ||
             msg.getTo() == "all") {
 
-            string from = (msg.getFrom() == currentUser->getLogin()) ? "Âû" :
+            string from = (msg.getFrom() == currentUser->getLogin()) ? "Ð’Ñ‹" :
                 findUserByLogin(msg.getFrom())->getName();
 
             string to;
             if (msg.getTo() == "all") {
-                to = "âñåì";
+                to = "Ð²ÑÐµÐ¼";
             }
             else if (msg.getTo() == currentUser->getLogin()) {
-                to = "Âàì";
+                to = "Ð’Ð°Ð¼";
             }
             else {
                 to = findUserByLogin(msg.getTo())->getName();
@@ -142,11 +142,11 @@ void Chat::showMessages() const {
 
 void Chat::showMenu() const {
     if (!currentUser) {
-        cout << "\n1. Ðåãèñòðàöèÿ\n2. Âõîä\n3. Âûõîä\n";
+        cout << "\n1. Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ\n2. Ð’Ñ…Ð¾Ð´\n3. Ð’Ñ‹Ñ…Ð¾Ð´\n";
     }
     else {
-        cout << "\n1. Îòïðàâèòü ëè÷íîå ñîîáùåíèå\n2. Îòïðàâèòü ñîîáùåíèå âñåì\n";
-        cout << "3. Ïðîñìîòðåòü ñîîáùåíèÿ\n4. Âûéòè èç àêêàóíòà\n5. Âûõîä\n";
+        cout << "\n1. ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð»Ð¸Ñ‡Ð½Ð¾Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ\n2. ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð²ÑÐµÐ¼\n";
+        cout << "3. ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ\n4. Ð’Ñ‹Ð¹Ñ‚Ð¸ Ð¸Ð· Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚Ð°\n5. Ð’Ñ‹Ñ…Ð¾Ð´\n";
     }
 }
 
@@ -156,7 +156,7 @@ void Chat::run() {
 
     while (running) {
         showMenu();
-        cout << "Âûáåðèòå äåéñòâèå: ";
+        cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ: ";
         cin >> choice;
 
         if (!currentUser) {
@@ -164,7 +164,7 @@ void Chat::run() {
             case 1: registerUser(); break;
             case 2: login(); break;
             case 3: running = false; break;
-            default: cout << "Íåâåðíûé âûáîð!\n";
+            default: cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€!\n";
             }
         }
         else {
@@ -174,7 +174,7 @@ void Chat::run() {
             case 3: showMessages(); break;
             case 4: logout(); break;
             case 5: running = false; break;
-            default: cout << "Íåâåðíûé âûáîð!\n";
+            default: cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€!\n";
             }
         }
     }
